@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzipp.pay.goods.blog.mapper.CheckMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fzipp.pay.entity.Check">
+        <id column="checkId" property="checkId" />
+        <result column="userId" property="userId" />
+        <result column="date" property="date" />
+        <result column="earlytime" property="earlytime" />
+        <result column="latetime" property="latetime" />
+        <result column="late" property="late" />
+        <result column="early" property="early" />
+        <result column="hostIp" property="hostIp" />
+        <result column="status" property="status" />
+        <result column="abtypeId" property="abtypeId" />
+        <result column="updatetime" property="updatetime" />
+    </resultMap>
+
+</mapper>

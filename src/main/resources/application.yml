@@ -1,0 +1,168 @@
+#生产环境
+server:
+  port: 8081 # 端口号
+  servlet:
+    context-path: /payService
+
+spring:
+  #   main: allow-bean-definition-overriding: false #springboot 2.6.2版本以上需要开启循环调用 针对pagehelper分页插件
+  # thymeleaf相关配置
+  thymeleaf:
+    cache: true # 开发环境中关闭缓存
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # #如果驱动类报红，将pom.xml中的mysql依赖的scope节点删除即可。
+    url: jdbc:mysql://127.0.0.1:3306/paymanager_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai  #serverTimezone=Asia/Shanghai - GMT
+    username: root
+    password: feng920418
+  # 返回时间类型Date采用yyyy-MM-dd HH:mm:ss格式化
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # springMVC相关配置
+  servlet:
+    multipart:
+      enabled: true
+      #当文件大小达到多少时进行磁盘写入
+      file-size-threshold: 1KB
+      #单个文件的最大值(默认1MB)
+      max-file-size: 5MB
+      #一次性上传文件的最大值
+      max-request-size: 10MB
+      location: /root/data/temp/ #静态资源路径
+  # E-Mail 服务器配置
+  mail:
+    #smtp服务主机 163:smtp.163.com  qq邮箱则为smtp.qq.com
+    host: smtp.qq.com
+    port: 465
+    #服务协议
+    protocol: smtp
+    # 编码集
+    default-encoding: UTF-8
+    #发送邮件的账户
+    username: pay.adm1n@foxmail.com
+    #授权码  //pijrikymppjrdjae //cwvvnlommrjaecja //awsfsrqekziodjca
+    password: awsfsrqekziodjca
+    nickname: Pay消息中心
+    test-connection: true
+    #配置阿里云服务器发送邮件
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: smtp.qq.com
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  # REDIS 服务配置
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器地址
+    host: 127.0.0.1 #172.26.16.20
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # 连接超时时间（毫秒）
+    timeout: 1000
+    jedis:
+      # 连接池配置
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+
+
+#配置Mybatis-Plus
+mybatis-plus:
+  #配置扫描xml
+  mapper-locations: classpath*:mapper/*/*Mapper.xml
+  #配置实体扫描类 #自己的包路径.*.pojo  #com.fzipp.pay.entity
+  type-aliases-package: com.fzipp.*.entity
+  #逻辑删除配置
+  global-config:
+    #    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+    logic-delete-value: 1
+    logic-not-delete-value: 0
+  #  配置信息
+  configuration:
+    #驼峰命名  false关闭
+    map-underscore-to-camel-case: false
+    #配置控制台打印完整带参数Sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#pagehelper分页插件配置
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true  #开启优化，如果开启优化，在分页页码结果没有数据的时候,会显示有数据的页码数据
+#  supportMethodsArguments: true #是否支持接口参数来传递分页参数，默认false
+#  pageSizeZero: true #true: pageSize=0 返回所有
+#  params: count=countSql
+
+#日志级别设置
+logging:
+  level:
+    root: info       #最基础的日志级别
+    com.fzipp.pay: debug # 指定包的日志输出级别
+    org.springframework.web: debug # 指定类的日志输出级别
+
+#服务器静态资源路径配置
+file:
+  #公网IP 空为本地IP
+  networkIP: '119.23.64.180'
+  localhost: http://172.26.16.20:${server.port}${server.servlet.context-path}  # 本地绝对路径
+  host: ':${server.port}${server.servlet.context-path}'  # 网络相对路径 后缀
+  dri: # 服务器路径
+    root: ${spring.servlet.multipart.location} # D://data//temp//
+    cache: ${spring.servlet.multipart.location}cache// # 缓存文件夹
+    profile: ${spring.servlet.multipart.location}profile//
+    image: ${spring.servlet.multipart.location}image//
+    excel: ${spring.servlet.multipart.location}excel//
+  mapping:  # 路由路径
+    profile: /load/static/resource/profile/  # 头像加载 公开API
+    resource: /load/static/resource # 资源加载 公开API
+#资源下载路径
+path:
+  down:
+    profile: ${file.localhost}${file.mapping.profile}
+    profileLast: ${file.host}${file.mapping.profile}
+    resourceLast: ${file.host}${file.mapping.resource} # 静态资源下载 相对路径
+
+
+#Pay项目基本配置
+pay:
+  #管理员账户
+  manage:
+    username: 'admin'
+  #打卡时间配置 "HH:mm:ss"
+  work:
+    #上班时间
+    up-time: "08:30:00"
+    #下班时间
+    down-time: "17:30:00"
+    #上班打卡开始时间
+    up-start: "07:00:00"
+    #上班打卡结束时间
+    up-end: "09:30:00"
+    #下班打卡开始时间
+    down-start: "16:30:00"
+    #下班打卡结束时间
+    down-end: "21:00:00"
+  #    scope-time: 00:00:00 # 打卡时间范围 00:00:00 表示没有时间范围限制，任何时间均可打卡
+  #权限认证
+  power:
+    admin: "/**"   #最高操作权限

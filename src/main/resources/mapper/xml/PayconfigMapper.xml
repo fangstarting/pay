@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzipp.pay.goods.blog.mapper.PayconfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fzipp.pay.entity.Payconfig">
+        <id column="payconfigId" property="payconfigId" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="rule" property="rule" />
+        <result column="money" property="money" />
+        <result column="expression" property="expression" />
+        <result column="status" property="status" />
+        <result column="jobgradeId" property="jobgradeId" />
+        <result column="updatetime" property="updatetime" />
+    </resultMap>
+
+</mapper>

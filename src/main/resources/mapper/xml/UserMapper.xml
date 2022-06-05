@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzipp.pay.goods.blog.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fzipp.pay.entity.User">
+        <id column="userId" property="userId" />
+        <result column="accountId" property="accountId" />
+        <result column="roleId" property="roleId" />
+        <result column="deptId" property="deptId" />
+        <result column="positionId" property="positionId" />
+        <result column="jobgradeId" property="jobgradeId" />
+        <result column="profile" property="profile" />
+        <result column="realname" property="realname" />
+        <result column="sex" property="sex" />
+        <result column="education" property="education" />
+        <result column="phone" property="phone" />
+        <result column="basepay" property="basepay" />
+        <result column="birthday" property="birthday" />
+        <result column="hiredate" property="hiredate" />
+        <result column="status" property="status" />
+        <result column="loginendtime" property="loginendtime" />
+        <result column="updatetime" property="updatetime" />
+    </resultMap>
+
+</mapper>
