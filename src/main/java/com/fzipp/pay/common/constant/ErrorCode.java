@@ -20,6 +20,11 @@ public class ErrorCode {
     public static final Integer FAULT = 0;
 
     /**
+     * 警告消息
+     */
+    public static final Integer WARNING = 2;
+
+    /**
      * 需要后续操作的验证 例如：覆盖操作
      */
     public static final Integer LATER_ACTION = 10;

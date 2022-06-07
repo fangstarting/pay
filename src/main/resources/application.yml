@@ -1,4 +1,4 @@
-#生产环境
+#开发环境
 server:
   port: 8081 # 端口号
   servlet:
@@ -8,7 +8,7 @@ spring:
   #   main: allow-bean-definition-overriding: false #springboot 2.6.2版本以上需要开启循环调用 针对pagehelper分页插件
   # thymeleaf相关配置
   thymeleaf:
-    cache: true # 开发环境中关闭缓存
+    cache: false # 开发环境中关闭缓存
     prefix: classpath:/templates/
     suffix: .html
     encoding: UTF-8
@@ -18,7 +18,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver # #如果驱动类报红，将pom.xml中的mysql依赖的scope节点删除即可。
     url: jdbc:mysql://127.0.0.1:3306/paymanager_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai  #serverTimezone=Asia/Shanghai - GMT
     username: root
-    password: feng920418
+    password: 123abc
   # 返回时间类型Date采用yyyy-MM-dd HH:mm:ss格式化
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -30,15 +30,14 @@ spring:
       #当文件大小达到多少时进行磁盘写入
       file-size-threshold: 1KB
       #单个文件的最大值(默认1MB)
-      max-file-size: 5MB
+      max-file-size: 10MB
       #一次性上传文件的最大值
-      max-request-size: 10MB
-      location: /root/data/temp/ #静态资源路径
+      max-request-size: 100MB
+      location: D://data//temp// #静态资源路径
   # E-Mail 服务器配置
   mail:
     #smtp服务主机 163:smtp.163.com  qq邮箱则为smtp.qq.com
     host: smtp.qq.com
-    port: 465
     #服务协议
     protocol: smtp
     # 编码集
@@ -46,18 +45,12 @@ spring:
     #发送邮件的账户
     username: pay.adm1n@foxmail.com
     #授权码  //pijrikymppjrdjae //cwvvnlommrjaecja //awsfsrqekziodjca
-    password: awsfsrqekziodjca
+    password: pijrikymppjrdjae
     nickname: Pay消息中心
     test-connection: true
-    #配置阿里云服务器发送邮件
     properties:
       mail:
         smtp:
-          ssl:
-            trust: smtp.qq.com
-          socketFactory:
-            class: javax.net.ssl.SSLSocketFactory
-            port: 465
           auth: true
           starttls:
             enable: true
@@ -67,7 +60,7 @@ spring:
     # Redis数据库索引（默认为0）
     database: 0
     # Redis服务器地址
-    host: 127.0.0.1 #172.26.16.20
+    host: 127.0.0.1
     # Redis服务器连接端口
     port: 6379
     # Redis服务器连接密码（默认为空）
@@ -123,8 +116,8 @@ logging:
 #服务器静态资源路径配置
 file:
   #公网IP 空为本地IP
-  networkIP: '119.23.64.180'
-  localhost: http://172.26.16.20:${server.port}${server.servlet.context-path}  # 本地绝对路径
+  networkIP:
+  localhost: http://127.0.0.1:${server.port}${server.servlet.context-path}  # 本地绝对路径
   host: ':${server.port}${server.servlet.context-path}'  # 网络相对路径 后缀
   dri: # 服务器路径
     root: ${spring.servlet.multipart.location} # D://data//temp//
