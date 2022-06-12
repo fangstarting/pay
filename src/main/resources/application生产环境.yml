@@ -16,9 +16,9 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver # #如果驱动类报红，将pom.xml中的mysql依赖的scope节点删除即可。
-    url: jdbc:mysql://127.0.0.1:3306/paymanager_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai  #serverTimezone=Asia/Shanghai - GMT
-    username: root
-    password: feng920418
+    url: jdbc:mysql://mysql?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai  #serverTimezone=Asia/Shanghai - GMT
+    username: 
+    password: 
   # 返回时间类型Date采用yyyy-MM-dd HH:mm:ss格式化
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -44,9 +44,9 @@ spring:
     # 编码集
     default-encoding: UTF-8
     #发送邮件的账户
-    username: pay.adm1n@foxmail.com
-    #授权码  //pijrikymppjrdjae //cwvvnlommrjaecja //awsfsrqekziodjca
-    password: awsfsrqekziodjca
+    username: 
+    #授权码  
+    password: 
     nickname: Pay消息中心
     test-connection: true
     #配置阿里云服务器发送邮件
@@ -123,7 +123,7 @@ logging:
 #服务器静态资源路径配置
 file:
   #公网IP 空为本地IP
-  networkIP: '119.23.64.180'
+  networkIP: '000.000.000.000'
   localhost: http://172.26.16.20:${server.port}${server.servlet.context-path}  # 本地绝对路径
   host: ':${server.port}${server.servlet.context-path}'  # 网络相对路径 后缀
   dri: # 服务器路径
